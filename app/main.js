@@ -32,9 +32,18 @@ function ButtonLogic() {
 		else {
 		display.innerHTML = display.innerHTML + keyLabel;
 		}
+		value1 = value1 + keyLabel;
 	}
 	else if (this.classList.contains('decimal')) {
-		alert("decimal");
+		
+		if (value1.indexOf('.') == -1) {
+			// If it's decimal, append to display and save into value1
+			display.innerHTML = display.innerHTML + keyLabel;
+			value1 = value1 + keyLabel;
+		}
+		else {
+			// If not ignore it.
+		}
 	}
 	else if (this.classList.contains('operator')) {
 		alert("Operator");
