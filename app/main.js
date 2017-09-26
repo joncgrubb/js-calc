@@ -1,32 +1,69 @@
 var display = document.getElementById('display');
 var digits = document.getElementsByClassName('numeric');
 var solarPanel = document.getElementById('solarPanel');
+var keys = document.getElementsByClassName('key');
+
+var value1;
+var value2;
+var selectedOperator;
 
 // Wait for page to load...
 
 document.onreadystatechange = function() {
 	if (document.readyState === "interactive") {
-		for (i = 0; i < digits.length; i++) {
-			digits[i].addEventListener("click", ButtonLogic);
+		
+		for (i = 0; i < keys.length; i++) {
+			keys[i].addEventListener("click", ButtonLogic);
 		}
 		solarPanel.addEventListener("click", Surprise);
 	}
 };
 
 function ButtonLogic() {
-	//alert("Click!");
 
-	var digit = this.innerHTML;
-	var currentDisplay = display.innerHTML;
+	var keyLabel = this.innerHTML;
 
-	if (currentDisplay === "0") {
-		display.innerHTML = digit;
+	//console.log(this.classList.contains('numeric'));
+
+	if (this.classList.contains('numeric')) {
+		if (display.innerHTML === "0") {
+		display.innerHTML = keyLabel;
+		}
+		else {
+		display.innerHTML = display.innerHTML + keyLabel;
+		}
 	}
-	else {
-		display.innerHTML = currentDisplay + digit;
+	else if (this.classList.contains('decimal')) {
+		alert("decimal");
+	}
+	else if (this.classList.contains('operator')) {
+		alert("Operator");
+	}
+	else if (this.classList.contains('allclear')) {
+		allClear();
+	}
+	else if (this.classList.contains('clear')) {
+		clear();
 	}
 }
 
+function clear() {
+	if (selectedOperator === '') {
+		value1 = '';
+	}
+	else {
+		value2 = '';
+	}
+}
+
+function allClear() {
+	value1 = '';
+	value2 = '';
+	selectedOperator = '';
+
+	display.innerHTML = "0";
+}
+
 function Surprise() {
-	alert("It's a solar panel...")
+	alert("It's a solar panel...");
 }
