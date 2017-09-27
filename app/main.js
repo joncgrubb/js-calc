@@ -26,7 +26,6 @@ document.onreadystatechange = function() {
 // ---------------------- Button Logic -------------------------- //
 
 function ButtonLogic() {
-
 	var keyLabel = this.innerHTML;
 
 	if (this.classList.contains('numeric')) {
@@ -191,7 +190,6 @@ function allClear() {
 }
 
 function Surprise() {
-
 	if (broken % 2 == 0) {
 		solarPanel.style.backgroundImage = "url('broken.png')";
 		broken++;
