@@ -1,3 +1,4 @@
+
 // ----------------------- Variables ----------------------------- //
 
 var display = document.getElementById('display');
@@ -8,6 +9,7 @@ var keys = document.getElementsByClassName('key');
 var value1;
 var value2;
 var selectedOperator;
+var broken = 2;
 
 // ----------------- Wait for page to load ----------------------- //
 
@@ -21,13 +23,11 @@ document.onreadystatechange = function() {
 		allClear();
 	}
 };
-// --------------------------------------------------------------- //
+// ---------------------- Button Logic -------------------------- //
 
 function ButtonLogic() {
 
 	var keyLabel = this.innerHTML;
-
-	//console.log(this.classList.contains('numeric'));
 
 	if (this.classList.contains('numeric')) {
 		numeric(keyLabel);
@@ -49,34 +49,7 @@ function ButtonLogic() {
 	}
 }
 
-function numeric(keyLabel) {
-		if (selectedOperator === '') {
-			value1 = properAppend(value1, keyLabel);
-			display.innerHTML = value1;
-		}
-		else {
-			value2 = properAppend(value2, keyLabel);
-			display.innerHTML = value2;
-		}
-}
-
-function properAppend(main, added) {
-	if (main === "0") {
-		return added;
-		}
-	return main + added;
-}
-
-function decimal(keyLabel) {
-	if (value1.indexOf('.') == -1) {
-			// If it's decimal, append to display and save into value1
-			display.innerHTML = display.innerHTML + keyLabel;
-			value1 = value1 + keyLabel;
-		}
-	else {
-			// If not ignore it.
-		}
-}
+// ---------------------- Computations -------------------------- //
 
 function operator(keyLabel) {
 	if (value1 === '') {
@@ -97,15 +70,74 @@ function operator(keyLabel) {
 			}
 			else {
 				// calculate!
-				// store results of calculate in value1
-				// update display with results of calculation (which is now value1)
-				// clear value2
-				value2 = '';
+				calculate();
 				// store keyLabel in selectedOperator
 				selectedOperator = keyLabel;
 			}
 		}
 	}
+}
+
+function decimal(keyLabel) {
+	if (value1.indexOf('.') == -1) {
+			// If it's decimal, append to display and save into value1
+			display.innerHTML = display.innerHTML + keyLabel;
+			value1 = value1 + keyLabel;
+		}
+	else {
+			// If not ignore it.
+		}
+}
+
+function calculate() {
+	var results = 0;
+
+	switch(selectedOperator) {
+		case "+":
+			results = Number(value1) + Number(value2);
+			break;
+
+		case "-":
+			results = Number(value1) - Number(value2);
+			break;
+
+		case "x":
+			results = Number(value1) * Number(value2);
+			break;
+
+		case "÷":
+			results = Number(value1) / Number(value2);
+			break;
+
+		default:
+			alert("How did this happen?!?");
+	}
+	// store results of calculate in value1
+	value1 = results;
+	// update display with results of calculation (which is now value1)
+	display.innerHTML = value1;
+	// clear value2
+	value2 = '';
+	// clear selectedOperator
+	selectedOperator = '';
+}
+
+function numeric(keyLabel) {
+		if (selectedOperator === '') {
+			value1 = properAppend(value1, keyLabel);
+			display.innerHTML = value1;
+		}
+		else {
+			value2 = properAppend(value2, keyLabel);
+			display.innerHTML = value2;
+		}
+}
+
+function properAppend(main, added) {
+	if (main === "0") {
+		return added;
+		}
+	return main + added;
 }
 
 function clear() {
@@ -122,28 +154,18 @@ function clear() {
 function allClear() {
 	value1 = '';
 	value2 = '';
-	
 	selectedOperator = '';
 	display.innerHTML = "0";
 }
 
-function calculate() {
-	var results = 0;
-
-	switch(selectedOperator) {
-		case "+":
-			results = Number(value1) + Number(value2);
-		case "-":
-			results = Number(value1) - Number(value2);
-		case "x":
-			results = Number(value1) * Number(value2);
-		case "&divide;":
-			results = Number(value1) / Number(value2);
-		default:
-			alert("How did this happen?!?");
-	}
-}
-
 function Surprise() {
-	alert("It's a solar panel...");
+
+	if (broken % 2 == 0) {
+		solarPanel.style.backgroundImage = "url('broken.png')";
+		broken++;
+	}
+	else {
+		solarPanel.style.backgroundImage = "none";
+		broken++;
+	}
 }

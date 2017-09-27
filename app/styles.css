@@ -45,4 +45,7 @@ h1 {
   height: 50px;
 }
 
-
+#solarPanel {
+	background-image: none;
+	background-size: 60%;
+}
