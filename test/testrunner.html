@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Mocha Tests</title>
 	<link rel="stylesheet" href="../node_modules/mocha/mocha.css">
 </head>
 <body>
 
+	<!-- put code to clear console errors here -->
+	<div id="display" style="display: none !important;"></div>
+	<div id="solarPanel" style="display: none !important;"></div>
+
+	<!-- set test bed for mocha to load -->
 	<div id="mocha"></div>
 
 	<!-- start the test suite -->
 	<script src="../node_modules/mocha/mocha.js"></script>
 	<script src="../node_modules/chai/chai.js"></script>
+	<script>mocha.setup('bdd');</script>
 
 	<!-- load code to test here (functions that we have written) -->
 	<script src="../app/main.js"></script>
 
 	<!-- put test scripts here (tests we have written using our functions) -->
+	<script src="testArray.js"></script>
+	<script src="testCalcFunc.js"></script>
 
+	<script>
+		mocha.run();
+	</script>
 
 </body>
 </html>

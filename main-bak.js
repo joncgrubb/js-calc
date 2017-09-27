@@ -166,15 +166,19 @@ function properAppend(main, added) {
 }
 
 function sign(keyLabel) {
-	var sign = 0;
 	if (selectedOperator === '') {
-		value1 = Number(value1) - (value1 * 2);
+		console.log(value1);
+		sign = (Number(value1) *= -1);
+		console.log(value1);
 		display.innerHTML = value1;
 		}
 	else {
-		value2 = Number(value2) - (value2 * 2);
+		value2 = properAppend(value2, keyLabel);
+		value2 = (Number(value2) *= -1);
 		display.innerHTML = value2;
 		}
+
+		//
 }
 
 function clear() {
