@@ -9,6 +9,7 @@ var keys = document.getElementsByClassName('key');
 var value1;
 var value2;
 var selectedOperator;
+var lastKeyPressed = '';
 var broken = 2;
 
 // ----------------- Wait for page to load ----------------------- //
@@ -27,9 +28,8 @@ document.onreadystatechange = function() {
 
 function ButtonLogic() {
 	var keyLabel = this.innerHTML;
-
 	if (this.classList.contains('numeric')) {
-		numeric(keyLabel);
+		numeric(keyLabel, lastKeyPressed);
 	}
 	else if (this.classList.contains('calculate')) {
 		calculate();
@@ -49,6 +49,7 @@ function ButtonLogic() {
 	else if (this.classList.contains('sign')) {
 		sign();
 	}
+	lastKeyPressed = keyLabel;
 }
 
 // ---------------------- Computations -------------------------- //
@@ -140,14 +141,17 @@ function calculate() {
 	selectedOperator = '';
 }
 
-function numeric(keyLabel) {
-		if (selectedOperator === '') {
-			value1 = properAppend(value1, keyLabel);
-			display.innerHTML = value1;
+function numeric(keyLabel, lastKey) {
+	if (lastKey === '=') {
+		allClear();
+	}
+	if (selectedOperator === '') {
+		value1 = properAppend(value1, keyLabel);
+		display.innerHTML = value1;
 		}
-		else {
-			value2 = properAppend(value2, keyLabel);
-			display.innerHTML = value2;
+	else {
+		value2 = properAppend(value2, keyLabel);
+		display.innerHTML = value2;
 		}
 }
 
