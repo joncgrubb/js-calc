@@ -86,6 +86,7 @@ function decimal(keyLabel, lastKey) {
 		allClear();
 	}
 	if (selectedOperator === '') {
+		console.log(value1);
 		if (value1.indexOf('.') == -1) {
 			if (value1 === '') {
 				value1 = 0 + value1 + keyLabel;
@@ -95,6 +96,11 @@ function decimal(keyLabel, lastKey) {
 			}
 			display.innerHTML = value1;
 		}
+		// else {
+		// 	value1 = value1 + keyLabel;
+		// 	console.log(value1);
+		// 	display.innerHTML = value1;
+		// 	}
 	}
 
 
@@ -168,7 +174,7 @@ function properAppend(main, added) {
 function sign(keyLabel) {
 	var sign = 0;
 	if (selectedOperator === '') {
-		value1 = Number(value1) - (value1 * 2);
+		value1 = (Number(value1) - (Number(value1) * 2));
 		display.innerHTML = value1;
 		}
 	else {
