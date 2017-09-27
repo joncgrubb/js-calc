@@ -47,6 +47,9 @@ function ButtonLogic() {
 	else if (this.classList.contains('clear')) {
 		clear();
 	}
+	else if (this.classList.contains('sign')) {
+		sign();
+	}
 }
 
 // ---------------------- Computations -------------------------- //
@@ -79,14 +82,30 @@ function operator(keyLabel) {
 }
 
 function decimal(keyLabel) {
-	if (value1.indexOf('.') == -1) {
-			// If it's decimal, append to display and save into value1
-			display.innerHTML = display.innerHTML + keyLabel;
-			value1 = value1 + keyLabel;
+	if (selectedOperator === '') {
+		if (value1.indexOf('.') == -1) {
+			if (value1 === '') {
+				value1 = 0 + value1 + keyLabel;
+			}
+			else {
+				value1 = value1 + keyLabel;
+			}
+			display.innerHTML = value1;
 		}
+	}
+
+
 	else {
-			// If not ignore it.
+		if (value2.indexOf('.') == -1) {
+			if (value2 === '') {
+				value2 = 0 + value2 + keyLabel;
+			}
+			else {
+				value2 = value2 + keyLabel;
+			}
+			display.innerHTML = value2;
 		}
+	}
 }
 
 function calculate() {
@@ -139,6 +158,19 @@ function properAppend(main, added) {
 		}
 	return main + added;
 }
+
+// function sign() {
+// 	if (selectedOperator === '') {
+// 			value1 = properAppend(value1, keyLabel);
+// 			value1 = (value1 *= -1);
+// 			alert(value1);
+// 			display.innerHTML = value1;
+// 		}
+// 	else {
+// 			value2 = properAppend(value2, keyLabel);
+// 			display.innerHTML = value2;
+// 		}
+// }
 
 function clear() {
 	if (selectedOperator === '') {
