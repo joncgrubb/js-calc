@@ -49,3 +49,12 @@ h1 {
 	background-image: none;
 	background-size: 60%;
 }
+
+.mastfoot {
+	margin-top: 50px;
+	text-align: center;
+}
+
+#grubblink {
+	color: #ccc;
+}
