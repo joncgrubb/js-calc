@@ -87,6 +87,7 @@ function decimal(keyLabel, lastKey) {
 	}
 	if (selectedOperator === '') {
 		console.log(value1);
+		console.log(typeof value1);
 		if (value1.indexOf('.') == -1) {
 			if (value1 === '') {
 				value1 = 0 + value1 + keyLabel;
@@ -122,7 +123,7 @@ function calculate() {
 
 	switch(selectedOperator) {
 		case "+":
-			results = Number(value1) + Number(value2);
+			results = Number(value1) + Number(value2)
 			break;
 
 		case "-":
@@ -141,7 +142,7 @@ function calculate() {
 			alert("How did this happen?!?");
 	}
 	// store results of calculate in value1
-	value1 = results;
+	value1 = results.toString();
 	// update display with results of calculation (which is now value1)
 	display.innerHTML = value1;
 	// clear value2
@@ -175,10 +176,12 @@ function sign(keyLabel) {
 	var sign = 0;
 	if (selectedOperator === '') {
 		value1 = (Number(value1) - (Number(value1) * 2));
+		value1 = value1.toString();
 		display.innerHTML = value1;
 		}
 	else {
 		value2 = Number(value2) - (value2 * 2);
+		value2 = value2.toString();
 		display.innerHTML = value2;
 		}
 }
